@@ -1,17 +1,16 @@
 import React from 'react'
-import {connect} from 'react-redux';
-import store from '../../store';
+import store from '../../reducers/index';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
+import {clearSubmit} from '../../reducers/utils'
 
 const onSubmit = (form) => {
   form.preventDefault();  
-  store.dispatch({type:'USUARIO_INSERT', submit: form})
-  form.currentTarget.elements.nome.value = '';
-  form.currentTarget.elements.sobreNome.value = '';
+  store.dispatch({type:'USUARIO_INSERT', submit: form.currentTarget.elements})
+  clearSubmit(form.currentTarget.elements);
 }
 
-const UsuarioInsert = (usuario) => { 
+const UsuarioInsert = () => { 
   return (   
       <Form onSubmit={onSubmit}>
         <h2>Iserir Usuario</h2>

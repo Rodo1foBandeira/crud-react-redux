@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Provider} from 'react-redux';
 import './App.css';
-import store from './store';
+import store from './reducers/index';
 import ListaUsuarios  from './components/Usuario/ListaUsuarios';
 import UsuarioForm from './components/Usuario/UsuarioForm';
 

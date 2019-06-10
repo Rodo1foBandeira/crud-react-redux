@@ -1,18 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Table from 'react-bootstrap/Table'
-import store from '../../store';
-import Form from 'react-bootstrap/Form';
+import store from '../../reducers/index';
 import Button from 'react-bootstrap/Button'
 
 const onSubmit = (form) => {
     form.preventDefault();  
-    store.dispatch({type:'USUARIO_EDIT', submit: form})
+    store.dispatch({type:'USUARIO_EDIT', submit: form.currentTarget.elements})
 }
 
 const onSubmitDelete = (form) => {
     form.preventDefault();  
-    store.dispatch({type:'USUARIO_DELETE', submit: form})
+    store.dispatch({type:'USUARIO_DELETE', submit: form.currentTarget.elements})
 }
 
 const ListaUsuarios = (usuario) => {
@@ -28,7 +27,7 @@ const ListaUsuarios = (usuario) => {
             </thead>
             <tbody>
             {
-                usuario.state.usuarios.map(
+                usuario.lista.map(
                     u => (
                         <tr key={u.id}>
                             <td>{u.id}</td>
@@ -55,4 +54,4 @@ const ListaUsuarios = (usuario) => {
     )
 }
 
-export default connect((state) => ({state: state}))(ListaUsuarios);
+export default connect((state) => ({lista: state.usuario.lista}))(ListaUsuarios);

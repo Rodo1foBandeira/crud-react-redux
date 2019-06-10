@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import store from '../../store';
+import store from '../../reducers/index';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 
 const onSubmit = (form) => {
   form.preventDefault();  
-  store.dispatch({type:'USUARIO_UPDATE', submit: form})
+  store.dispatch({type:'USUARIO_UPDATE', submit: form.currentTarget.elements})
 }
 
 const cancelar = () => {
@@ -17,14 +17,14 @@ const UsuarioEdit = (usuario) => {
   return (         
       <Form onSubmit={onSubmit}>
         <h2>Editar Usuario</h2>
-        <input name="id" type="hidden" value={usuario.state.id}/>
+        <input name="id" type="hidden" value={usuario.base.id}/>
         <Form.Group>
           <Form.Label>Nome</Form.Label>
-          <Form.Control name="nome" type="text" defaultValue={usuario.state.nome}/>
+          <Form.Control name="nome" type="text" defaultValue={usuario.base.nome}/>
         </Form.Group>
         <Form.Group>
           <Form.Label>Sobrenome</Form.Label>
-          <Form.Control name="sobreNome" type="text" defaultValue={usuario.state.sobreNome}/>
+          <Form.Control name="sobreNome" type="text" defaultValue={usuario.base.sobreNome}/>
         </Form.Group>
         
         <Button type="submit">Salvar</Button>
@@ -33,4 +33,4 @@ const UsuarioEdit = (usuario) => {
   )
 }
 
-export default connect((state) => ({state: state.usuario}))(UsuarioEdit);
+export default connect((state) => ({base: state.usuario.base}))(UsuarioEdit);
