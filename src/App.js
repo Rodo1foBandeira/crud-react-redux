@@ -8,7 +8,7 @@ import UsuarioForm from './components/Usuario/UsuarioForm';
 class App extends Component {
   render() {    
     return (
-      <div className="container col-md-4">
+      <div className="container col-md-5">
         <Provider store={store}>          
           <UsuarioForm></UsuarioForm>
           <br/>

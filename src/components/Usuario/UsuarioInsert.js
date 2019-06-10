@@ -29,4 +29,4 @@ const UsuarioInsert = (usuario) => {
   )
 }
 
-export default connect((state) => ({state: state.usuario}))(UsuarioInsert);
+export default UsuarioInsert;

@@ -1,7 +1,7 @@
 import {createStore} from 'redux';
 
 const initialState = {
-    usuario: {id: 0, nome:'', sobreNome: '', botaoSalvar: 'Incluir'},
+    usuario: {id: 0, nome:'', sobreNome: '', incluir: true},
     usuarios: []
 };
 
@@ -23,11 +23,11 @@ function reducer(state = initialState, action){
         case 'USUARIO_EDIT':
             let usuario = state.usuarios.filter(x => x.id == parseInt(submit.id.value))[0];
             return {
-                ...state, usuario: {...usuario, botaoSalvar: 'Editar'}
+                ...state, usuario: {...usuario, incluir: false}
             }
         case 'USUARIO_EDIT_CANCELAR':
             return {
-                ...state, usuario: { botaoSalvar: 'Incluir'}
+                ...state, usuario: { incluir: true}
             }
         case 'USUARIO_UPDATE':
             state.usuarios.map(x => {
@@ -39,7 +39,7 @@ function reducer(state = initialState, action){
             return {
                 ...state,
                 usuarios: [...state.usuarios],
-                usuario: {...state.usuario, botaoSalvar: 'Incluir'}
+                usuario: {...state.usuario, incluir: true}
             }
         case 'USUARIO_DELETE':
             return {
